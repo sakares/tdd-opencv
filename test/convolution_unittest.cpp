@@ -24,3 +24,19 @@ TEST(convolve1D, calculationIsCorrect) {
 		ASSERT_EQ(expected[i], output[i]);
 	}
 }
+
+TEST(convolve1D, dataAndKernelSizeIsNotNegative) {
+
+    // given
+	float input[5] = {3.00, 4.00, 5.00, 0.00, 0.00};
+	float output[5];
+	float kernel[2] = {2,1};
+	int dataSize = -1;
+	int kernelSize = -2;
+
+    // when
+	bool success = convolve1D(input, output, dataSize, kernel, kernelSize);
+
+    // then
+	ASSERT_FALSE(success);
+}
